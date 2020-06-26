@@ -1,5 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+
+from flask import Flask, redirect, render_template, request, url_for
+
+from alphabets import Alphabets
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -21,13 +24,20 @@ def about():
 @app.route('/post', methods= ['GET', 'POST'])
 def post():
     name = 'Text Analyzer'
-    if request.method == 'GET':
+    if request.method == 'POST':
+        return redirect({{url_for('result')}})
+    else:
         return render_template('post.html', name=name, title=name)
+
+@app.route('/result.html', methods=['GET', 'POST'])
+def result():
+    name = 'Text Analysis Result'
     if request.method == 'POST':
         content = request.form['content']
-        print(content)
-        return redirect(url_for('result'))
+        result = Alphabets(content)
+        total_words, num_of_char, most_frequent_word, words, word_num = result.num_of_words(), result.num_of_chars(), result.most_frequent()[0], result.identify(), result.count().items()
 
+        return render_template('result.html', name=name, title='Result', word_count=total_words, char_num = num_of_char, frequent = most_frequent_word, words = words, word_num = word_num)
 
 if __name__ == '__main__':
     app.run(debug=True)

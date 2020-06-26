@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <p class="result">Total number of words: {{word_count}}</p>
+    <p class="result">Number of character: {{char_num}}</p>
+    <p class="result">The most frequent word: {{frequent}}</p>
+
+    <table>
+        <thead>
+            <th>WORD</th>
+            <th>WORD COUNT</th>
+        </thead>
+        <tbody>
+            {% for word, count in word_num %}
+            <tr>
+                <td>{{word}}</td>
+                <td>{{count}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
