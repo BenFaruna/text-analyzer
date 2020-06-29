@@ -1,13 +1,31 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgba(136, 136, 136, 0.7);
+    background-color: rgba(136, 136, 136, 0.5);
     margin: 0;
+    padding: 0;
+    width: auto;
 }
 
 header{
+    width:100%;
     background-color: #7ab7d6;
     color: #999999;
     padding: 20px;
+}
+
+footer{
+    background-color: rgba(122, 183, 214, 0.8);
+    width: auto;
+    margin: 0;
+    display: block;
+    clear: both;
+}
+
+img{
+    height: 32px;
+    width: 32px;
+    position: relative;
+    left: 45%;
 }
 
 div .menu-container .active{
@@ -16,6 +34,18 @@ div .menu-container .active{
 
 div.container{
     padding: 20px, 20px, 10px, 10px;
+}
+
+h1{
+    margin-left: 30px;
+}
+
+p{
+    margin-left: 20px;
+}
+
+p+ul{
+    list-style-type: none;
 }
 
 form{
@@ -31,9 +61,17 @@ a{
 }
 
 a.brand-name{
-    color: rgba(204, 204, 204, 0.7);
+    color: rgba(204, 204, 204, 0.8);
     font-size: larger;
     font-weight: bolder;
+}
+
+a.learning{
+    color: #7ab7d6;
+}
+
+a.learning:hover{
+    color: #999999;
 }
 
 a:active{
@@ -42,7 +80,7 @@ a:active{
 }
 
 li .nav-link{
-    color: rgba(204, 204, 204, 0.7);
+    color: rgba(204, 204, 204, 0.8);
     font-size: xx-large;
     font-weight: bolder;
     padding-left: 10px;
@@ -66,4 +104,39 @@ textarea{
 
 .result{
     font-size: x-large;
+}
+
+.username{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.center-footer{
+    position: relative;
+    left: 35%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+thead{
+    background-color: rgba(122, 183, 214, 0.5);
+    font-size: medium;
+    font-weight: bold;
+    color: #999999;
+}
+
+table.result{
+    margin-left: 50px;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    background-color: #ffffff;
+    width: 300px;
+    text-align: center;
+}
+
+th, td{
+    height: 50px;
+}
+
+td{
+    border-top: 1px solid #999999;
 }

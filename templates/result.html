@@ -7,16 +7,16 @@
     <p class="result">Number of character: {{char_num}}</p>
     <p class="result">The most frequent word: {{frequent}}</p>
 
-    <table>
+    <table class="result" border="0">
         <thead>
             <th>WORD</th>
             <th>WORD COUNT</th>
         </thead>
         <tbody>
             {% for word, count in word_num %}
-            <tr>
-                <td>{{word}}</td>
-                <td>{{count}}</td>
+            <tr class="result-row">
+                <td class="word">{{word}}</td>
+                <td class="word-count">{{count}}</td>
             </tr>
             {% endfor %}
         </tbody>
