@@ -22,13 +22,24 @@
         </div>
         <ul class="nav-lists">
           <li class="nav-list">
-            <a class="nav-link active" href="{{ url_for('home') }}">Home</a>
-          </li>
-          <li class="nav-list">
             <a class="nav-link active" href="{{ url_for('about') }}">About</a>
           </li>
           <li class="nav-list">
+            <a class="nav-link active" href="{{url_for('student_list')}}">Students</a>
+          </li>
+          <li class="nav-list">
             <a class="nav-link active" href="{{ url_for('post') }}">Text Analyzer</a>
+          </li>
+          <!-- <li class="nav-list">
+            <a class="nav-link active" href="">Feedback</a></li>
+          <li class="nav-list">
+            <a class="nav-link active" href="feedback-result">Report</a>
+          </li> -->
+          <li class="nav-list">
+            <a class="nav-link active" href="{{url_for('students')}}">API</a>
+          </li>
+          <li class="nav-list">
+            <a class="nav-link active" href="{{url_for('create_student')}}">Join</a>
           </li>
         </ul>
       </div>
@@ -37,12 +48,12 @@
       {% block content %}{% endblock %}
     </main>
     <footer>
-    <p class="center-footer">&copy; 2020 Courtesy of 30 Days of Python Challenge</p>
-      <p class="footer">
+    <p class="center-footer footer-flex">&copy; 2020 Courtesy of 30 Days of Python Challenge</p>
+      <p class="footer-flex">
         To connect:<br>
         <a href="https://www.github.com/BenFaruna"><img src="{{ url_for('static', filename='image/GitHub-Mark-32px.png') }}" alt="github" title="Github profile"></a>
-        <a href="https://www.twitter.com/Neodynamics"><img src="{{ url_for('static', filename='image/twitter_PNG15.png') }}" alt="twitter" title="Twitter Profile"></a>
-        <a href="https://www.facebook.com/neodynamics?ref=bookmarks"><img src="{{ url_for('static', filename='image/facebook_logos_PNG19759.png') }}" alt="facebook" title="Facebook profile"></a>
+        <a href="https://www.twitter.com/Neodynamics"><img src="{{ url_for('static', filename='image/twitter_logo.png') }}" alt="twitter" title="Twitter Profile"></a>
+        <a href="https://www.facebook.com/neodynamics?ref=bookmarks"><img src="{{ url_for('static', filename='image/facebook_logo.png') }}" alt="facebook" title="Facebook profile"></a>
       </p>
     </footer>
   </body>

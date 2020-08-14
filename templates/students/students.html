@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<main>
+    <div class='container'>
+        <h1>People who took time to check my work</h1>
+        {% for student in students %}
+
+        <h2>Name: {{student['name']}}</h2>
+        <h4>Date of Birth: {{student['birthyear']}}</h4>
+        <h4>Country: {{student['country']}}</h4>
+        <h4>City: {{student['city']}}</h4>
+        <h4>Skills: {{student['skills']}}</h4>
+        <p>Bio: {{student['bio']}}</p>
+        <small>Created on: {{student['created_at']}}</small>
+
+        <div class='controls'>
+
+            <a class="btn btn-primary" href="/students/update/{{student_id}}">EDIT</a>
+            <form action="{{ url_for('delete_student')}}/{{student_id}}" method="POST">
+                <a class="btn btn-danger" href="{{ url_for('delete_student') }}/{{student_id}}">DELETE</a>
+            </form>
+        </div>
+        {% endfor %}
+        
+    </div>
+</main>
+
+{% endblock %}

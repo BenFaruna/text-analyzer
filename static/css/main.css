@@ -1,142 +1,140 @@
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgba(136, 136, 136, 0.5);
-    margin: 0;
-    padding: 0;
-    width: auto;
+
+:root {
+    --header-bg-color: #4a7799;
+    --textarea-bg-color: rgb(250, 246, 246);
+    --body-bg-color: rgb(210, 214, 210);
+    --nav-link-color: #bbb;
 }
 
-header{
-    width:100%;
-    background-color: #7ab7d6;
-    color: #999999;
-    padding: 20px;
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
 
-footer{
-    background-color: rgba(122, 183, 214, 0.8);
-    width: auto;
-    margin: 0;
-    display: block;
-    clear: both;
+body {
+    margin: auto;
+    font-family: Lato, sans-serif;
+    background: var(--body-bg-color);
+    line-height: 1.75;
+    word-spacing: 1.5px;
+    font-weight: 300;
+    width: 100%;
 }
 
-img{
-    height: 32px;
-    width: 32px;
-    position: relative;
-    left: 45%;
+header {
+    background-color: var(--header-bg-color);
 }
 
-div .menu-container .active{
-    background-color: #7ab7d6;
+main {
+    width: 90%;
+    margin: auto;
 }
 
-div.container{
-    padding: 20px, 20px, 10px, 10px;
+h1, h2{
+    font-family: Nunito;
+    font-weight: 300;
+    margin: 20px;
+
 }
 
-h1{
-    margin-left: 30px;
+p {
+    font-size: 22px;
+    font-weight: 300;
 }
 
-p{
-    margin-left: 20px;
-}
-
-p+ul{
+ul {
     list-style-type: none;
 }
 
-form{
-    position: relative;
-    left: 5%;
+img {
+    height: 30px;
+    width: 30px;
 }
 
-a{
-    color: #000000;
-    font-weight: bold;
-    font-family: sans-serif;
-    text-decoration: none;
+footer {
+    background-color: var(--header-bg-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(221, 215, 215);
+    padding: 50px;
 }
 
-a.brand-name{
-    color: rgba(204, 204, 204, 0.8);
-    font-size: larger;
-    font-weight: bolder;
+.menu-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(221, 215, 215);
+    padding: 25px;
 }
 
-a.learning{
-    color: #7ab7d6;
+a.brand-name {
+    font-size: 28px;
 }
 
-a.learning:hover{
-    color: #999999;
-}
-
-a:active{
-    color: #000000;
-    text-decoration: none;
-}
-
-li .nav-link{
-    color: rgba(204, 204, 204, 0.8);
-    font-size: xx-large;
-    font-weight: bolder;
-    padding-left: 10px;
-}
-li.nav-list{
-    list-style-type: none;
+.btn {
     display: inline-block;
-}
-
-textarea{
-    width: 60%;
-}
-
-.btn{
-    border-radius: 10px;
-    width: 100px;
+    width: 150px;
     height: 50px;
-    background-color: #7ab7d6;
-    color: #ffffff;
-}
-
-.result{
-    font-size: x-large;
-}
-
-.username{
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-}
-
-.center-footer{
-    position: relative;
-    left: 35%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-thead{
-    background-color: rgba(122, 183, 214, 0.5);
-    font-size: medium;
-    font-weight: bold;
-    color: #999999;
-}
-
-table.result{
-    margin-left: 50px;
-    border-collapse: collapse;
-    border-spacing: 5px;
-    background-color: #ffffff;
-    width: 300px;
+    color: var(--nav-link-color);
+    font-size: 20px;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
     text-align: center;
+    line-height: 50px;
+    margin-top: 25px;
+    text-decoration: none;
 }
 
-th, td{
-    height: 50px;
+.btn.btn-primary {
+    background-color: var(--header-bg-color);
 }
 
-td{
-    border-top: 1px solid #999999;
+.nav-lists {
+    display: flex;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 22px;
+    padding: 0px 5px;
+    color: var(--nav-link-color);
+    font-weight: 400;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0px 5px;
+}
+
+.container{
+    margin: auto;
+    padding: 20px;
+    background-color: var(--body-bg-color);
+}
+
+textarea.text-analyzer{
+    width: 60%;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.controls {
+    display: flex;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    width: 50%;
+    height: 3rem;
+    padding: 5px;
+    border: none;
 }
