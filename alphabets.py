@@ -3,7 +3,7 @@ import re
 
 class Alphabets:
     def __init__(self, arg):
-        self.alphabet = arg
+        self.alphabet = arg.upper()
         self.regex = r'[A-Za-z]+'
 
     def identify(self):
@@ -16,7 +16,7 @@ class Alphabets:
 
     def num_of_chars(self):
         chars = self.alphabet
-        return len(chars)
+        return len(chars) - (self.num_of_words() - 1)
 
     def count(self):
         word_arr = self.identify()

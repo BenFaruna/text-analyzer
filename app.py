@@ -48,7 +48,8 @@ def result():
         result = Alphabets(content)
         total_words, num_of_char, most_frequent_word, words, word_num = result.num_of_words(), result.num_of_chars(), result.most_frequent()[0], result.identify(), result.count().items()
 
-        return render_template('result.html', name=name, title='Result', word_count=total_words, char_num = num_of_char, frequent = most_frequent_word, words = words, word_num = word_num)
+        return render_template('result.html', name=name, title='Result', word_count=total_words, char_num=num_of_char, 
+        frequent=most_frequent_word, words=words, word_num=word_num)
 
 
 @app.route('/api/v1.0/students', methods=['GET', 'POST'])
@@ -110,15 +111,15 @@ def update(id):
         return redirect(url_for('student_list'))
 
     elif request.method =='GET':
-        # query = {'_id':ObjectId(id)}
-        # name = request.form['name']
-        # dob = request.form['birthyear']
-        # country = request.form['country']
-        # city = request.form['city']
-        # skills = request.form['skills'].split(', ')
-        # bio = request.form['bio']
+        query = {'_id':ObjectId(id)}
+        name = request.form['name']
+        dob = request.form['birthyear']
+        country = request.form['country']
+        city = request.form['city']
+        skills = request.form['skills'].split(', ')
+        bio = request.form['bio']
 
-        return render_template('students/update/update_id.html') #, _id=query, name=name, dob=dob, country=country, city=city, skills=skills, bio=bio)
+        return render_template('students/update/update_id.html') # , _id=query, name=name, dob=dob, country=country, city=city, skills=skills, bio=bio)
 
 
 @app.route('/api/v1.0/students/update/<id>', methods=['PUT'])
@@ -130,7 +131,7 @@ def update_student(id):
     city = request.form['city']
     skills = request.form['skills'].split(', ')
     bio = request.form['bio']
-    created_on = datetime.now() # .strftime('%Y-%m-%d %H:%M:%S')
+    created_on = datetime.utcnow() # .strftime('%Y-%m-%d %H:%M:%S')
 
     student = {
         'name' : name,
@@ -147,14 +148,14 @@ def update_student(id):
     return render_template(url_for('student_list'))
 
 
-@app.route('/api/v1.0/student/<id>', methods=['DELETE'])
-def delete_student(id):
+# @app.route('/api/v1.0/student/<id>', methods=['DELETE'])
+# def delete_student(id):
 
-    query = {'_id':ObjectId(id)}
+#     query = {'_id':ObjectId(id)}
 
-    db.students.delete_one(query)
+#     db.students.delete_one(query)
     
-    return redirect(url_for('student_list'))
+#     return redirect(url_for('student_list'))
 
 
 if __name__ == '__main__':
