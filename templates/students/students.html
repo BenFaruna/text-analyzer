@@ -7,19 +7,19 @@
         <h1>Enjoy the features</h1>
         {% for student in students %}
 
-        <h2>Name: {{student['name']}}</h2>
+        <h3>Name: {{student['name']}}</h3>
         <h4>Date of Birth: {{student['birthyear']}}</h4>
         <h4>Country: {{student['country']}}</h4>
         <h4>City: {{student['city']}}</h4>
-        <h4>Skills: {{student['skills']}}</h4>
+        <h4>Skills: {% for skill in student['skills'] %} {{skill}}, {% endfor %}</h4>
         <p>Bio: {{student['bio']}}</p>
         <small>Created on: {{student['created_at']}}</small>
 
         <div class='controls'>
 
-            <a class="btn btn-primary" href="/students/update/<student_id>">EDIT</a>
-            <form action="#" method="POST">
-                <a class="btn btn-danger" href="#">DELETE</a>
+            <a class="btn btn-primary" href="{{url_for('update', id=student['_id'])}}">EDIT</a>
+            <form action="{{url_for('find_students', id=student['_id'])}}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete" />
             </form>
         </div>
         {% endfor %}

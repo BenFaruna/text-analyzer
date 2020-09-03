@@ -11,11 +11,11 @@ from alphabets import Alphabets
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-# MONGODB_URL = 'mongodb+srv://neobot:neodynamics@30daysofpython-pa4u3.mongodb.net/<dbname>?retryWrites=true&w=majority'
+MONGODB_URL = 'mongodb+srv://neobot:neodynamics@30daysofpython-pa4u3.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
-# client = pymongo.MongoClient(MONGODB_URL)
+client = pymongo.MongoClient(MONGODB_URL)
 
-# db = client['thirty_days_of_python']
+db = client['thirty_days_of_python']
 
 
 @app.route('/')
@@ -56,19 +56,24 @@ def result():
 def students():
     if request.method == 'POST':
         
-        return redirect(url_for('student_list'))
+        return render_template(url_for('student_list'))
     else:
         
         student = db.students.find()
         return Response(dumps(student), mimetype='application/json')
 
 
-
-@app.route('/api/v1.0/students/<id>')
+@app.route('/api/v1.0/students/<id>', methods=['GET', 'POST'])
 def find_students(id):
-    student = db.students.find_one({'_id' : ObjectId(id)})
+    if request.method == 'POST':
+        delete_student(id)
+        return redirect(url_for('student_list'))
 
-    return Response(dumps(student), mimetype='application/json')
+    else:
+
+        student = db.students.find_one({'_id' : ObjectId(id)})
+
+        return Response(dumps(student), mimetype='application/json')
 
 
 @app.route('/students/', methods=['GET', 'POST'])
@@ -80,7 +85,7 @@ def student_list():
         city = request.form['city']
         skills = request.form['skills'].split(', ')
         bio = request.form['bio']
-        created_on = datetime.now() # .strftime('%Y-%m-%d %H:%M:%S')
+        created_on = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         student = {
             'name' : name,
@@ -95,6 +100,7 @@ def student_list():
         return redirect(url_for('student_list'))
     else:
         students_list = db.students.find()
+
         return render_template('students/students.html', students=students_list)
 
 
@@ -106,7 +112,6 @@ def create_student():
 
 @app.route('/students/update/<id>', methods=['GET', 'POST'])
 def update(id):
-
     if request.method == 'POST':
         return redirect(url_for('student_list'))
 
@@ -119,7 +124,7 @@ def update(id):
         skills = request.form['skills'].split(', ')
         bio = request.form['bio']
 
-        return render_template('students/update/update_id.html') # , _id=query, name=name, dob=dob, country=country, city=city, skills=skills, bio=bio)
+        return render_template('students/update/update_id.html', id=query, name=name, dob=dob, country=country, city=city, skills=skills, bio=bio)
 
 
 @app.route('/api/v1.0/students/update/<id>', methods=['PUT'])
@@ -143,19 +148,19 @@ def update_student(id):
         'created_at': created_on
     }
 
-    db.students.updare_one(query, student)
+    db.students.update_one(query, student)
     
-    return render_template(url_for('student_list'))
+    return
 
 
-# @app.route('/api/v1.0/student/<id>', methods=['DELETE'])
-# def delete_student(id):
-
-#     query = {'_id':ObjectId(id)}
-
-#     db.students.delete_one(query)
+@app.route('/api/v1.0/student/<id>', methods=['DELETE'])
+def delete_student(id):
     
-#     return redirect(url_for('student_list'))
+    query = {'_id':ObjectId(id)}
+
+    db.students.delete_one(query)
+
+    return
 
 
 if __name__ == '__main__':
