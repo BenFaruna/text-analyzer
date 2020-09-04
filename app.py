@@ -31,7 +31,7 @@ def about():
     return render_template('about.html', name=name, title='About Us')
 
 
-@app.route('/post', methods= ['GET', 'POST'])
+@app.route('/post', methods=['GET', 'POST'])
 def post():
     name = 'Text Analyzer'
     if request.method == 'POST':
@@ -56,7 +56,7 @@ def result():
 def students():
     if request.method == 'POST':
         
-        return render_template(url_for('student_list'))
+        return redirect(url_for('student_list'))
     else:
         
         student = db.students.find()
@@ -85,7 +85,7 @@ def student_list():
         city = request.form['city']
         skills = request.form['skills'].split(', ')
         bio = request.form['bio']
-        created_on = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        created_on = datetime.now()
 
         student = {
             'name' : name,
@@ -113,44 +113,51 @@ def create_student():
 @app.route('/students/update/<id>', methods=['GET', 'POST'])
 def update(id):
     if request.method == 'POST':
+        update_student(id)
         return redirect(url_for('student_list'))
 
-    elif request.method =='GET':
+    else:
         query = {'_id':ObjectId(id)}
-        name = request.form['name']
-        dob = request.form['birthyear']
-        country = request.form['country']
-        city = request.form['city']
-        skills = request.form['skills'].split(', ')
-        bio = request.form['bio']
+        student = db.students.find_one(query)
 
-        return render_template('students/update/update_id.html', id=query, name=name, dob=dob, country=country, city=city, skills=skills, bio=bio)
+        return render_template('students/update/update_id.html', student=student)
 
 
 @app.route('/api/v1.0/students/update/<id>', methods=['PUT'])
 def update_student(id):
     query = {'_id':ObjectId(id)}
+
     name = request.form['name']
     dob = request.form['birthyear']
     country = request.form['country']
     city = request.form['city']
     skills = request.form['skills'].split(', ')
     bio = request.form['bio']
-    created_on = datetime.utcnow() # .strftime('%Y-%m-%d %H:%M:%S')
+    created_on = datetime.utcnow()
 
-    student = {
-        'name' : name,
-        'country': country,
-        'city': city,
-        'birthyear': dob,
-        'skills': skills,
-        'bio': bio,
-        'created_at': created_on
-    }
+    student = [
+        {'$set': {'name' : name}},
+        {'$set': {'country': country}},
+        {'$set': {'city': city}},
+        {'$set': {'birthyear': dob}},
+        {'$set': {'skills': skills}},
+        {'$set': {'bio': bio}},
+        {'$set': {'created_at': created_on}}
+    ]
 
     db.students.update_one(query, student)
-    
+
     return
+
+
+@app.route('/api/v1.0/students/update/<id>', methods=['GET', 'POST'])
+def update_help(id):
+    if request.method == 'POST':
+        update_student(id)
+        return redirect(url_for('student_list'))
+
+    else:
+        return redirect(url_for('students'))
 
 
 @app.route('/api/v1.0/student/<id>', methods=['DELETE'])
