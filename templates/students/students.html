@@ -8,7 +8,7 @@
         {% for student in students %}
 
         <h3>Name: {{student['name']}}</h3>
-        <h4>Date of Birth: {{student['birthyear']}}</h4>
+        <!-- <h4>Date of Birth: {{student['birthyear']}}</h4> -->
         <h4>Country: {{student['country']}}</h4>
         <h4>City: {{student['city']}}</h4>
         <h4>Skills: {% for skill in student['skills'] %} {{skill}}, {% endfor %}</h4>
